@@ -1,4 +1,4 @@
-# Todo App - Spring Boot Practice
+# HaiBaDO Test
 
 ## Overview
 Đây là một ứng dụng Todo App đơn giản cho phép người dùng quản lý các công việc hàng ngày. Ứng dụng này chỉ bao gồm phần **Backend** (Spring Boot).
