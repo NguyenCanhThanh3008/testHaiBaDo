@@ -2,6 +2,7 @@ package com.mains.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.util.List;
 
@@ -11,16 +12,37 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productID;
 
-    private String name;
-    private String category;
-    private int star;
-    private double price;
-    private double discount;
-    private String color;
-    private String size;
-    private String style;
-    private int quantity;
-    private String description;
+        @NotBlank(message = "Name is required")
+        private String name;
+
+        @NotBlank(message = "Category is required")
+        private String category;
+
+        @Min(value = 1, message = "Star rating must be at least 1")
+        @Max(value = 5, message = "Star rating cannot exceed 5")
+        private int star;
+
+        @Positive(message = "Price must be positive")
+        private Double price;
+
+        @PositiveOrZero(message = "Discount must be zero or positive")
+        private Double discount;
+
+        @NotBlank(message = "Color is required")
+        private String color;
+
+        @NotBlank(message = "Size is required")
+        private String size;
+
+        @NotBlank(message = "Style is required")
+        private String style;
+
+        @Positive(message = "Quantity must be positive")
+        private int quantity;
+
+        @NotBlank(message = "Description is required")
+        private String description;
+
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonIgnore

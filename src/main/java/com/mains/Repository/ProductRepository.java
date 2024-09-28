@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     // Tìm tất cả sản phẩm theo tên (case-insensitive)
@@ -34,6 +35,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     // Tìm sản phẩm theo kiểu
     List<Product> findByStyle(String style);
+
+    // Tìm sản phẩm theo ID
+    Optional<Product> findById(int id);
 
     // Tùy chỉnh query để tìm sản phẩm dựa trên giá và danh mục
     @Query("SELECT p FROM Product p WHERE p.price < :price AND p.category = :category")

@@ -4,12 +4,11 @@ import com.mains.Entity.Product;
 import com.mains.Service.ProductService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -41,5 +40,21 @@ public class ProductController {
     @GetMapping("/byStar")
     public List<Product> getProductsByStar(@RequestParam int star) {
         return productService.findByStarGreaterThanEqual(star);
+    }
+
+    @GetMapping("/byProductName")
+    public List<Product> getProductsByName(@RequestParam String productName) {
+        return productService.findByName(productName);
+    }
+
+    @GetMapping("/byProductId")
+    public Optional<Product> getProductsById(@RequestParam int id) {
+        return productService.findById(id);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        Product createdProduct = productService.addProduct(product);
+        return ResponseEntity.status(201).body(createdProduct);
     }
 }

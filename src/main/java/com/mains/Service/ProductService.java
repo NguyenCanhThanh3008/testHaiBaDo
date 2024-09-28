@@ -5,6 +5,7 @@ import com.mains.Repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -63,6 +64,16 @@ public class ProductService {
     // Tìm sản phẩm theo kiểu
     public List<Product> findByStyle(String style) {
         return productRepository.findByStyle(style);
+    }
+
+    // Tìm sản phẩm theo kiểu
+    public Optional<Product> findById(int id) {
+        return productRepository.findById(id);
+    }
+
+    // Method to add a new product
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
     }
 
     // Tìm sản phẩm theo giá và danh mục
