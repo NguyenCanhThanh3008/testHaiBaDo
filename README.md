@@ -13,7 +13,7 @@
 ### Technical Stack
 
 #### Backend:
-- **Spring Boot**: Framework để xây dựng ứng dụng backend trên nền Java.
+- **Spring Boot Framework**: để xây dựng ứng dụng backend trên nền Java.
 - **Spring Data JPA**: Thư viện hỗ trợ truy cập cơ sở dữ liệu.
 - **H2 Database**: Cơ sở dữ liệu nhúng sử dụng trong môi trường phát triển.
 - **Microsoft SQL Server**: Cơ sở dữ liệu sử dụng trong môi trường sản xuất.
