@@ -1,7 +1,7 @@
-# HaiBaDO Test practice
+# HAIBADO TEST PRACTICE
 
-## Overview
-Đây là một ứng dụng Todo App đơn giản cho phép người dùng quản lý các công việc hàng ngày. Ứng dụng này chỉ bao gồm phần **Backend** (Spring Boot).
+## OVERVIEW
+This is a product management application that allows users to perform operations such as viewing, adding, editing, and deleting products. The application is developed as a **Backend** using **Spring Boot** and utilizes **SQL Server** for data storage. The provided APIs allow users to filter products based on various criteria such as category, price, rating, discount, quantity, color, size, and style.
 
 ### REQUIREMENT:
 1. **Database Design**: Based on the provided ERD diagram.
@@ -13,7 +13,7 @@
 4. **Insert Sample Data**: Create and export a sample database file (SQL, JSON, etc.).
 5. **Deploy on Docker**: Package and deploy the application using Docker.
 
-### Technical Stack
+### TECHNICAL STACK
 - **Spring Boot Framework**: To build the backend application on the Java platform.
 - **JPA**: Library for database access.
 - **H2 Database**: Embedded database used in the development environment.
@@ -22,7 +22,7 @@
 - **Docker**: Containerize the application for deployment.
 - **Postman**: API testing tool.
 
-### Database Design
+### DATABASE DESIGN
 
 ![image](https://github.com/user-attachments/assets/5a714c9d-8545-4381-9bab-536e12fe8e44)
 
@@ -48,13 +48,16 @@ mvn spring-boot:run
 ```
 The application will run on http://localhost:8080.
 
-To run the application with Docker, follow these steps:
-
-- Build Docker Image:
+#### TO RUN THE APPLICATION WITH DOCKER, FOLLOW THESE STEPS:
+1. Create JAR file:
+```bash
+./mvnw clean package
+```
+2. Build Docker Image:
 ```bash
 docker build -t hai-ba-do-app .
 ```
-- Run Container:
+3. Run Container:
 ```bash
 docker run -p 8080:8080 hai-ba-do-app
 ```
