@@ -10,7 +10,7 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productID;
+    private int productID;
 
         @NotBlank(message = "Name is required")
         private String name;
@@ -44,19 +44,19 @@ public class Product {
         private String description;
 
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Img> images;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Review> reviews;
 
-    public Long getProductID() {
+    public int getProductID() {
         return productID;
     }
 
-    public void setProductID(Long productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
     }
 

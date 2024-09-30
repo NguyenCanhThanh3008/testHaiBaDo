@@ -6,10 +6,10 @@ import com.mains.Entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<Users, Integer> {
-    // Tìm người dùng theo tên người dùng (case-insensitive)
+    // Find user by username (case-insensitive)
     Optional<Users> findByUserNameIgnoreCase(String userName);
 
-    // Tìm người dùng theo email (email phải duy nhất)
+    // Find user by email (email must be unique)
     Optional<Users> findByEmail(String email);
 }
 

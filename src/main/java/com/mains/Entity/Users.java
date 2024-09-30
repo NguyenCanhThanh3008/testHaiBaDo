@@ -8,7 +8,7 @@ import java.util.List;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userID;
+    private int userID;
 
     private String userName;
     private String email;
@@ -16,11 +16,11 @@ public class Users {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
-    public Long getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(Long userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 

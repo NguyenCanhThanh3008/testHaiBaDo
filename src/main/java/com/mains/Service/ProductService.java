@@ -2,6 +2,7 @@ package com.mains.Service;
 
 import com.mains.Entity.Product;
 import com.mains.Repository.ProductRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,57 +17,57 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    // Lấy tất cả sản phẩm
+    // Get all products
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    // Tìm sản phẩm theo tên
+    // Find products by name
     public List<Product> findByName(String name) {
         return productRepository.findByNameIgnoreCase(name);
     }
 
-    // Tìm sản phẩm theo danh mục
+    // Find products by category
     public List<Product> findByCategory(String category) {
         return productRepository.findByCategory(category);
     }
 
-    // Tìm sản phẩm theo giá dưới một mức giá nhất định
+    // Find products by price below a certain amount
     public List<Product> findByPriceLessThan(Double price) {
         return productRepository.findByPriceLessThan(price);
     }
 
-    // Tìm sản phẩm theo sao đánh giá
+    // Find products by rating stars
     public List<Product> findByStarGreaterThanEqual(int star) {
         return productRepository.findByStarGreaterThanEqual(star);
     }
 
-    // Tìm sản phẩm theo giảm giá
+    // Find products by discount
     public List<Product> findByDiscountGreaterThan(double discount) {
         return productRepository.findByDiscountGreaterThan(discount);
     }
 
-    // Tìm sản phẩm theo số lượng
+    // Find products by quantity
     public List<Product> findByQuantityGreaterThan(int quantity) {
         return productRepository.findByQuantityGreaterThan(quantity);
     }
 
-    // Tìm sản phẩm theo màu
+    // Find products by color
     public List<Product> findByColor(String color) {
         return productRepository.findByColor(color);
     }
 
-    // Tìm sản phẩm theo kích thước
+    // Find products by size
     public List<Product> findBySize(String size) {
         return productRepository.findBySize(size);
     }
 
-    // Tìm sản phẩm theo kiểu
+    // Find products by style
     public List<Product> findByStyle(String style) {
         return productRepository.findByStyle(style);
     }
 
-    // Tìm sản phẩm theo kiểu
+    // Find product by ID
     public Optional<Product> findById(int id) {
         return productRepository.findById(id);
     }
@@ -76,10 +77,42 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    // Tìm sản phẩm theo giá và danh mục
+    // Method to delete a product by ID
+    public ResponseEntity<Void> deleteProduct(int id) {
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return ResponseEntity.noContent().build(); // 204 No Content
+        }
+        return ResponseEntity.notFound().build(); // 404 Not Found
+    }
+
+    public Product editProductById(int id, Product product) {
+        // Check if the product exists
+        Optional<Product> existingProductOpt = productRepository.findById(id);
+        if (existingProductOpt.isPresent()) {
+            Product existingProduct = existingProductOpt.get();
+
+            // Update product details
+            existingProduct.setName(product.getName());
+            existingProduct.setCategory(product.getCategory());
+            existingProduct.setStar(product.getStar());
+            existingProduct.setPrice(product.getPrice());
+            existingProduct.setDiscount(product.getDiscount());
+            existingProduct.setColor(product.getColor());
+            existingProduct.setSize(product.getSize());
+            existingProduct.setStyle(product.getStyle());
+            existingProduct.setQuantity(product.getQuantity());
+            existingProduct.setDescription(product.getDescription());
+
+            return productRepository.save(existingProduct); // Save the updated product
+        } else {
+            throw new RuntimeException("Product not found with ID: " + id);
+        }
+    }
+
+    // Find products by price and category
     public List<Product> findProductsByPriceAndCategory(Double price, String category) {
         return productRepository.findProductsByPriceAndCategory(price, category);
     }
 
 }
-

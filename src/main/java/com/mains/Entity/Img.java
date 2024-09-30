@@ -6,19 +6,19 @@ import jakarta.persistence.*;
 public class Img {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imgID;
+    private int imgID;
 
     private String link;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productID")
     private Product product;
 
-    public Long getImgID() {
+    public int getImgID() {
         return imgID;
     }
 
-    public void setImgID(Long imgID) {
+    public void setImgID(int imgID) {
         this.imgID = imgID;
     }
 

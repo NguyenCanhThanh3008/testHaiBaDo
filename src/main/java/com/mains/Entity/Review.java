@@ -6,23 +6,23 @@ import jakarta.persistence.*;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewID;
+    private int reviewID;
 
     private String comment;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productID")
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userID")
     private Users user;
 
-    public Long getReviewID() {
+    public int getReviewID() {
         return reviewID;
     }
 
-    public void setReviewID(Long reviewID) {
+    public void setReviewID(int reviewID) {
         this.reviewID = reviewID;
     }
 

@@ -10,7 +10,19 @@
 			"name": "get all products",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						""
+					]
+				}
 			},
 			"response": []
 		},
@@ -18,7 +30,25 @@
 			"name": "products filter by category",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/byCategory?category=Clothing",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"byCategory"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "Clothing"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -26,7 +56,25 @@
 			"name": "products filter by price",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/byPrice?price=25",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"byPrice"
+					],
+					"query": [
+						{
+							"key": "price",
+							"value": "25"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -34,7 +82,25 @@
 			"name": "products filter by star",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/byStar?star=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"byStar"
+					],
+					"query": [
+						{
+							"key": "star",
+							"value": "4"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -42,7 +108,25 @@
 			"name": "products filter by name",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/byProductName?productName=T-Shirt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"byProductName"
+					],
+					"query": [
+						{
+							"key": "productName",
+							"value": "T-Shirt"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -50,15 +134,117 @@
 			"name": "products filter by id",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/byProductId?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"byProductId"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "add new product",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"name\": \"T-Shirt-t\",\n        \"category\": \"Clothing\",\n        \"star\": 4,\n        \"price\": 20.0,\n        \"discount\": 10.0,\n        \"color\": \"Red\",\n        \"size\": \"M\",\n        \"style\": \"Casual\",\n        \"quantity\": 50,\n        \"description\": \"Red cotton T-shirt\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit product filter by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Updated Product\",\n    \"category\": \"Updated Category\",\n    \"star\": 5,\n    \"price\": 89.99,\n    \"discount\": 15.0,\n    \"color\": \"Blue\",\n    \"size\": \"L\",\n    \"style\": \"Formal\",\n    \"quantity\": 30,\n    \"description\": \"This is an updated product.\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/edit/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"edit",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete products filter by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/delete/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"delete",
+						"11"
+					]
+				}
 			},
 			"response": []
 		}
